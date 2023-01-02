@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="container-fluid d-flex flex-row mt-5">
+  <p class="card-text fs-4 fw-bold text-danger ms-3 fw-underline"><img style="height:27px;" src="https://b.zmtcdn.com/data/o2_assets/246bbd71fbba420d5996452be3024d351616150055.png"><u class="ms-2">Order Online</u></p>  
+</div>  
+<hr>  
+<section class="my-6">
+  <div class="container-fluid">
+  <p class="card-text fs-2 fw-bolder px-4 py-3"><u class="ms-2">{{category_name}}</u></p>   
+    <div class="d-flex flex-row justify-content-evenly flex-wrap mt-4 mb-5">
+      {% for product in products %}
+      <div class="card" style="width: 50vh;">
+        <img src="/media/{{product.prod_image}}" class="card-img-top" style="height:200px;" alt="hotel image"/>
+        <div class="card-body d-flex justify-content-start flex-column">
+          <p class="card-text fs-6 fw-bold">{{product.prod_name}}</p>
+          {% if product.item_availability is True %}
+          <del><p class="card-text text-normal fs-6">Rs. {{product.marked_price}}</p></del>
+          <p class="card-text text-danger fs-6"><strong>{{product.selling_price}}</strong> for one</p>
+          <p class="card-text fs-6 fw-bold text-success">In Stock</p>
+          <p class="card-text fs-6 fw-bold"><i class="fa-map-marker">{{product.shop}}</i></p>
+          <a class="text-decoration-none" href="{% url "hotel_profile" product.shop.id %}"><button class="btn btn-danger d-flex align-items-center justify-content-center fs-6 fw-bold">
+            <i class="fa fa-shopping-cart fa-sm me-1"></i> Visit</button></a>
+          {% else %}
+          <del><p class="card-text text-normal fs-6">Rs. {{product.marked_price}}</p></del>
+          <p class="card-text text-danger fs-6"><strong>{{product.selling_price}}</strong> for one</p>
+          <p class="card-text fs-6 fw-bold text-danger">Out of Stock</p>
+          <p class="card-text fs-6 fw-bold"><i class="fa-map-marker">{{product.shop}}</i></p>
+          <a class="text-decoration-none" href="{% url "hotel_profile" product.shop.id %}"><button class="btn btn-danger d-flex align-items-center justify-content-center fs-6 fw-bold">
+            <i class="fa fa-shopping-cart fa-sm me-1"></i> Visit</button></a>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section> 
+</section>
+{% endblock %}

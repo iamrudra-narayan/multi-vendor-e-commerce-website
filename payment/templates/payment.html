@@ -1,0 +1,100 @@
+{% extends "layout-type.html" %}
+{% block title %}Payment Page{% endblock %}
+{% block content %}
+<section class="my-6">
+    <div class="container-fluid" style="">  
+        <h2>Order Summary</h2> 
+        <hr>
+      <div class="d-flex flex-row justify-content-evenly flex-wrap mt-4">
+          {% for key,value in request.session.cart.items %}
+          <div class="mb-5 d-flex flex-row px-2" style="width: 200vh;">
+            <img src="{{value.image}}" class="card-img-top me-1" style="height:50px;width:50px;" alt="hotel image"/>
+            <div class="card-body d-flex justify-content-start flex-row">
+              <p class="card-text fw-bold me-3" style="font-size:15px;">{{value.name}}</p>
+              <p class="card-text text-dark fw-bold fw-normal me-1" style="font-size:13px;">₹ {{value.price}}</p><i style="margin-top:2px;" class="fa fa-times text-danger ms-1"></i><p class="fw-bold text-dark px-3" style="font-size:13px;"><b>{{value.quantity}}</b></p>
+            </div>
+          </div> 
+          {% endfor %}
+          <div class="mb-5 d-flex flex-row justify-content-center flex-row">
+          <h3 class="fw-bold fs-4 text-primary me-4">Item Total </h3><p class="card-text text-dark fs-5 fw-bold me-5 ">₹ {{cart_total_amount}}</p>
+          </div>
+    </div>
+    <div class="mb-5 d-flex flex-row justify-content-center flex-column">
+        <h3>Address Details </h3>
+        <hr>
+    {% if address %}    
+        {% for address in address %}
+        <div class="mb-2 d-flex flex-column" style="justify-content:center;">   
+        <b>{{ address.name}}</b>
+        {{ address.pincode}},   
+        {{ address.address}},
+        {{ address.city}},
+        {{ address.dist}},
+        {{ address.state}}
+        <div class="mb-2 d-flex flex-row justify-content-center flex-column">
+         <b>Mobile: </b> {{ address.mobile}}
+         <b>Secondary Mobile: </b>  {{ address.s_mobile}}
+         <a href="{% url 'updateaddress' address.id %}"><button class="btn btn-outline-light bg-danger text-white fw-bold" style="height:35px;width:80px;" type="submit">Change</button></a>
+        </div>
+        </div>
+        {% endfor %}
+       </div>
+    {% else %}  
+    <a href="{% url 'addaddress' %}"><button class="btn btn-outline-light bg-danger text-white fw-bold" style="height:35px;width:180px;font-size:13px;" type="submit">Add Delivery Address</button></a>
+    {% endif %}
+  </section>
+{% if address %}   
+<div class="card ms-2" style="height:150px;width:300px;display:flex;justify-content:center;flex-flow:column;align-items:center;">
+<img src="https://cdn.razorpay.com/static/assets/logo/payment.svg" style="width:200px;height:50px;">
+<button class="btn btn-outline-light bg-danger text-white fw-bold" id="rzp-button1" style="height:35px;width:180px;" type="submit">Pay ₹ {{cart_total_amount}}</button>
+</div>
+</div>
+{% endif %}
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "{{RAZORPAY_KEY_ID}}", // Enter the Key ID generated from the Dashboard
+    "amount": "{{amount}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Rudra Zomato",
+    "description": "Test Transaction",
+    "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHcAAAB3CAMAAAAO5y+4AAAAdVBMVEXMIC7////MHSzIAADLGSnIAAfKABrJABTvycrJAA3LFSbLESP++/z56uv78PHJABHtv8D13N3dgYXadHjz1tjPNkDbeXz45OXqtLfTUFjNKDTVWWHQPUXSS1Lora/fio7Za3HWYGfloqTil5nRSEvOMzjSQ00z+upAAAAEM0lEQVRoge2b3ZKzKBCGERAU/A9q1GgSHXP/l7jQbRx3N9n6qrYqOeE5mcYB3qZpWsuUJAgCU13I56grYzVJEDShph/UpTpsnG4jPyiKyCYgJvy4LCGhIY3+gq6uSP3JvX1CL+Qbsh6Px+PxeDwej8fj8Xg8Hs/XUZ9/70kIl/HtHH9cVndzFrTs47KnwFL8n/VSzvnhFSYFmyuOzd0gXMuQhUJBIz473Vlgb0KVEJqT93ClxYZWbgyX/aN7rBIGiViqfqWEi8swulf0u0GFfjRTZKK5E9S6GqZO98r73qkKMlyvp1G/feGcT6WJNoypKRGXs5shK2o7Ri/2alYIXRf2WiSIvjijEISSqgw2Ik1Z1IKZpWmhbCAW8CIwg3ijy9Lgl6SmYbW3bprEBuYNuwSuVOGARqPl+TAuYuy3UUi1lsdJXqKzo24fXw/NmuegW/SoFpzr7T9noW6HjsEl/7UXQQ5rSV6/7OZjchh+ZsNxtiIXoHt+uj+1uy7ts2y6ETmA3834O+rGzHGS+WWk1a00xkToYMEEGO1aw2xpT0GoDcoIOmSBiZ6T6buQNhNj2Jcr6eAfZhzu6oQ+MtyxNyeaaq1ZBz0igWcw6HQ+g/GD+nbLfrZ1hriwRhMqGR2HoW5cu9IMYjKHSqHVMspw8NtKIjBrIs4FOi2JRl9HVMns4tB3rXFba3uIK5MlSZLB5HeFIlfrT51s1hbvd0dJjzCk7DnFsE677g/KXcXWbrTAvJN6/E1ZS88JqJ0U2cLc8afumwqmahBLV0Xoiq4KIiDOyYoqisoJ2nKrSm2+whmfqmpxTieMQ0ImVk3DmKSn2xHNXseZ9+B44qrEpltZXQh4yVBFEIYbILY1FMz5UarY5obTTRkGJLOHZtfdAv66YlM8KcnKXJ3sIeJTrPCczqhiy5SAmBRPYwY1VxJwvyMmFlwbFaLa4pzDJRf6F2x7kLVpmmYRtrI6RGd6VJkEhbC6oo8JfsvdUu6CaozlJLF8Wd359sAsZZiT6cswx9ExOxa2HJtXedmSlGPGN0+DwHrbTt7w4C8iL56jRtYeJxleLjc/drGBE4eqec4xWewh2Yrig2/JyvK9OoPjlRbT80KujxV0yV9mlTjKJiNXj71szjHRUBOCnuLuBTlBo2QUIxEkJ9A7qb1c2/SVe9SS6s3zFrU1skAiU9jctzc8OCHRIN0vp3B3tNm0wH3S6l7d3wXuh2Vr5poVtsyaO7di1pOsnGt72xY349xPz5d3d0GSszBGQibhrh+v3b2rc9gWHTpcXP5muNm47SHss0HOGAtdZ7F240XDHETbh4N71+f/9bzx7xjYGvhHP9T+o5N7Otob/E8n8Xg8Ho/H4/F4PB6Px+PxeDxf4ltv8L7zfUpNqi99j/Ot74++8b1VXsH3ZfGnvy+r4Lu2wFT1B3UfV/fr2F/4sjwqQvfUNwAAAABJRU5ErkJggg==",
+    "order_id": "{{order_id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler": function (response){
+        /*alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature);*/
+        setTimeout(myURL, 2000);
+         function myURL() {
+            document.location.href = '{% url 'success' %}';
+            }
+
+        /*document.getElementById.innerHTML = "<div class='modal-dialog modal-dialog-scrollable'><h3>{{response.razorpay_payment_id}}</h3><h3>{{response.razorpay_order_id}}</h3><h3>{{response.razorpay_signature}}</h3></div>"*/
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function (response){
+        /*alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);*/
+        setTimeout(myURL, 2000);
+         function myURL() {
+            document.location.href = '{% url 'failed' %}';
+            }
+});
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
+{% endblock %}

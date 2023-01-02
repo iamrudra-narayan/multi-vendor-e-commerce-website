@@ -1,0 +1,92 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.navbar {
+    background-color: rgb(232, 22, 22);
+}
+.navbar-brand img {
+    width: 150px;
+    height: 50px;
+}
+.carousel-item img {
+    width:100%;
+    height:32rem;
+}
+.card {
+    border: hidden;
+    border-radius: 4px;
+}
+@media (max-width: 576px) { 
+    .carousel-item img {
+        height:80%;  
+    }
+    .carousel-item h1 {
+        font-size: medium;
+    }
+    .carousel-item p {
+        font-size: small;
+    }
+    .app-d img {
+        height: 20px;
+        width:80px;
+    }
+}    
+.nav-resp .form-control{
+    height: 30px;
+}
+.btn {
+    height: 30px; 
+    font-size: 15px;
+}
+.container-search {
+    height: 40px;
+    background-color: rgb(232, 22, 22);
+}
+.navbar-toggler {
+    border:none;
+    color: white;
+}
+.navbar-toggler .navbar-toggler-icon {
+    height: 18px;
+    color: white;
+}
+@media (max-width: 800px) {
+    .app-banner {
+        display: none;
+    }
+    .app-form {
+        width: 100%;
+        display: flex;
+        flex-flow: column;
+    }
+    @media (max-width: 576px) { 
+        .app-d img {
+            height: 36px;
+        }
+    }   
+    .form-app .btn {
+        font-size: 8px;
+    }    
+    
+}   
+  
+.app-d img {
+    height: 41px;
+}
+
+.card-item {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+}
+.card-item img {
+    border: 0px;
+    border-radius: 150px;
+    width: 150px;
+    height: 150px;
+}
+a {
+    text-decoration: none;
+}

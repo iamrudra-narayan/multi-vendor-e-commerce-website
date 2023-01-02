@@ -1,0 +1,14 @@
+{% extends "layout-type.html" %}
+{% block title %}Dining-Page{% endblock %}
+{% block content %}
+      <div class="container-fluid d-flex flex-row">
+        <a href="{% url 'delivery' %}" class="text-decoration-none"><p class="card-text fs-4 fw-bold text-danger pt-4 py-5 ms-4 fw-underline"><img style="height:27px;" src="https://b.zmtcdn.com/data/o2_assets/246bbd71fbba420d5996452be3024d351616150055.png">Delivery</p></a>  
+        <a href="{% url 'dining' %}" class="text-decoration-none"><p class="card-text fs-4 fw-bold text-danger pt-4 py-5 ms-4 fw-underline"><img style="height:27px;" src="https://b.zmtcdn.com/data/o2_assets/30fa0a844f3ba82073e5f78c65c18b371616149662.png"><u class="ms-2">Dining</u></p></a>  
+    </div>
+      <hr>
+      <section class="my-6">
+        <div class="container-fluid d-flex justify-content-center px-3">
+          <img style="height:300px;" src="https://cdn.vectorstock.com/i/preview-2x/85/18/coming-soon-flat-circle-icon-vector-4128518.webp">
+        </div>
+      </section>
+{% endblock %}

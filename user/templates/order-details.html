@@ -1,0 +1,49 @@
+{% extends "layout-type.html" %}
+{% block title %}Order Details Page{% endblock %}
+{% block content %}
+<a class="text-decoration-none" href="{% url 'orders' %}"><p class="card-text fs-4 text-danger fw-bolder px-4 py-3">&#8592 Back</p></a>
+<hr>  
+<section class="my-6">
+    <div class="container-fluid" style="">  
+        <h2>Your Order Id #{{order_details.order_id}}</h2> 
+        <hr>
+      <div class="d-flex flex-row justify-content-evenly flex-wrap mt-4">
+          <div class="mb-5 d-flex flex-row px-2" style="width: 200vh;">
+            <div class="card-body d-flex justify-content-start flex-row">
+              <p class="card-text fw-bold me-3" style="font-size:15px;">{{order_details.cart_items}}</p>
+            </div>
+          </div> 
+          <div class="mb-5 d-flex flex-row justify-content-center flex-row">
+          <h3 class="fw-bold fs-4 text-primary me-4">Item Total </h3><p class="card-text text-dark fs-5 fw-bold me-5 ">₹ {{order_details.total_price}}</p>
+          </div>
+    </div>
+    <div class="mb-5 d-flex flex-row justify-content-center flex-column">
+        <h3>Order Details </h3>
+        <hr>
+        <label for="orderno" class="card-text" style="font-size:14px; font-weight:300">Order Number
+        <p id="orderno" class="card-text mb-2" style="font-size:14px; font-weight:500">{{order_details.order_id}}</p>
+        </label>
+        <label for="payment" class="card-text" style="font-size:14px; font-weight:300">Payment
+        <p id="payment" class="card-text mb-2" style="font-size:14px; font-weight:500">Paid</p>
+        </label>
+        <label for="date" class="card-text" style="font-size:14px; font-weight:300">Date
+        <p id="date" class="card-text mb-2" style="font-size:14px; font-weight:500">{{order_details.datetime_of_payment}}</p>
+        </label>
+        <label for="phno" class="card-text" style="font-size:14px; font-weight:300">Phone Number
+        <p id="phno" class="card-text mb-2" style="font-size:14px; font-weight:500">{{order_details.address.mobile}}</p>
+        </label>
+        <label for="address" class="card-text" style="font-size:14px; font-weight:300">Deliver to
+        <p id="address" class="card-text" style="font-size:14px; font-weight:500">{{order_details.address.address}}</p>
+        </label>
+    </div>
+    <div class="mb-2" style="border:0.1px solid black;height:content;width:100%;">
+    <p class="card-text px-3 text-danger" style="font-size:13px; font-weight:500;">Call Subhashree Hotel (+91 9337099781)</p>
+    </div>
+    <hr>
+    <div class="mb-2" style="height:content;width:100%;">
+    <p class="card-text px-3 text-dark" style="font-size:12px;font-weight:300;">Subhashree Hotel</p>
+    <img src="https://e7.pngegg.com/pngimages/333/237/png-clipart-food-safety-and-standards-authority-of-india-logo-india-food-text-thumbnail.png" style="height:50px; width:50px;padding-left:20px;">
+    <p class="card-text px-3 text-dark" style="font-size:12px;font-weight:300;">Lic No. 12021034000209</p>
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "layout-type.html" %}
+{% block title %}Failed Order Page{% endblock %}
+{% block content %}
+<div class="px-2" style="justify-content:center;display:flex;flex-flow: column;">
+    <div class="d-flex justify-content-center flex-column mt-3">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <b>Payment Failed!</b>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+   <hr>
+   <div class="mb-5 d-flex flex-row ps-2 justify-content-center flex-row">
+  <p class="card-text text-danger fs-5 fw-bold me-5 mt-2">You will be redirected to payment page after 3sec.......</p>
+   </div>
+</div>
+<script>
+    setTimeout(myURL, 3000);
+         function myURL() {
+            document.location.href = '{% url 'payment' %}';
+            }
+</script>
+{% endblock %}

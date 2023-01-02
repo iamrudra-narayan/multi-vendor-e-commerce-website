@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block title %}My Profile{% endblock %}
+{% block content %}
+<section>
+    <div class="container d-flex justify-content-center">
+        <p class="card-text fs-2 fw-bolder py-3">ADD NEW ADDRESS</p>
+    </div>
+        <div class="container d-flex justify-content-center">
+          <form action="" method="POST">{% csrf_token %}
+            <label class="fw-bold" for="lname">Name</label>
+            <input class="form-control me-2 mb-3 app-ip" style="height:45px;width:280px;" type="text" name="name" required>
+            <label class="fw-bold" for="fname">Mobile No.</label>
+            <input class="form-control me-2 mb-3 app-ip" style="height:45px;width:280px;" type="number" name="mobile" required>
+            <label class="fw-bold" for="fname">Alternate Mobile No.</label>
+            <input class="form-control me-2 mb-3 app-ip" style="height:45px;width:280px;" type="number" name="s_mobile" required>
+            <label class="fw-bold" for="fname">Pin Code</label>
+            <input class="form-control me-2 mb-3 app-ip" style="height:45px;width:280px;" type="number" name="pincode" required>
+            <label class="fw-bold" for="lname">Address</label>
+            <input class="form-control me-2 mb-3 app-ip" style="height:45px;width:280px;" type="text" name="address" required>
+            <label class="fw-bold me-1.5" for="email">City</label>
+            <input class="form-control me-2 mb-3 app-ip" style="height:45px;width:280px;" type="text" name="city" required><br>
+            <label class="fw-bold" for="dob">District </label><br>
+            <input class="form-control me-2 mb-3 app-ip" style="height:35px;width:200px;" type="text" name="district" required><br>
+            <label class="fw-bold" for="dob">State </label><br>
+            <input class="form-control me-2 mb-3 app-ip" style="height:35px;width:200px;" type="text" name="state" required><br>
+            <label class="fw-bold" for="dob">Delivery Place </label><br>
+            <select name="place" class="form-control me-2 mb-3 app-ip">
+            <option disabled>Delivery Place</option>
+            <option value="Home">Home</option>
+            <option value="Work" checked>Work</option>
+            </select>
+            <button class="btn btn-outline-light bg-danger text-white fw-bold mt-2" style="height:45px;width:200px;" type="submit">ADD</button>
+          </form>
+        </div>
+</section>
+{% endblock %}

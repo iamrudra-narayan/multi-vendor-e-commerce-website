@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block title %}My Profile{% endblock %}
+{% block content %}
+<section>
+    <div class="container d-flex justify-content-center">
+        <p class="card-text fs-2 fw-bolder py-3">EDIT PROFILE</p>
+    </div>
+        <div class="container d-flex justify-content-center">
+          <form action="/myaccount/edit_profile_details/" method="POST">{% csrf_token %}
+            <label class="fw-bold" for="fname">First Name</label>
+            <input class="form-control me-2 mb-3 app-ip" style="height:45px;width:280px;" type="text" name="fname" placeholder="First Name" id="fname" value={{user.first_name}}>
+            <label class="fw-bold" for="lname">Last Name</label>
+            <input class="form-control me-2 mb-3 app-ip" style="height:45px;width:280px;" type="text" name="lname" placeholder="Last Name" id="lname" value={{user.last_name}}>
+            <label class="fw-bold me-1.5" for="email">Email</label>
+            <input class="form-control me-2 mb-3 app-ip" style="height:45px;width:280px;" type="email" name="email" placeholder="Email" id="email" value="{{user.username}}"><br>
+            <label class="fw-bold" for="dob">Age: </label><br>
+            <input class="form-control me-2 mb-3 app-ip" style="height:35px;width:200px;" type="number" name="age" placeholder="Age" id="Age" value="{{user.userprofile.age}}"><br>
+            <label class="fw-bold" for="dob">Age: </label>{{user.userprofile.gender}}<br>
+            <select name="gender" class="form-control me-2 mb-3 app-ip">
+            <option disabled>Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female" checked>Female</option>
+            </select>
+            <button class="btn btn-outline-light bg-danger text-white fw-bold mt-2" style="height:45px;width:200px;" type="submit">Update</button>
+          </form>
+        </div>
+</section>
+{% endblock %}

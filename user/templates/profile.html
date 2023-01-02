@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+{% block title %}My Profile{% endblock %}
+{% block content %}
+<section>
+    <div class="container">
+        {% if messages %}
+            <div class="d-flex justify-content-center flex-column mt-3">
+              {% for message in messages %}
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                {% endfor %}
+            </div>  
+        {% endif %}
+    </div>
+    <div class="container-fluid py-5 px-3">
+        <div class="container d-flex justify-content-center">
+            <p class="card-text fs-2 fw-bolder py-3">PROFILE</p>
+        </div>
+        <div class="container d-flex justify-content-center mb-4">
+            <img style="height:200px;width:200px;" src="https://cdn-icons-png.flaticon.com/512/1739/1739847.png"><br>
+        </div><br>
+        <div class="container d-flex justify-content-center flex-column">
+        {% if user %}
+        <label class="fw-bold me-4" for="fname">First Name:</label>
+        <input class="form-control me-2 mb-3 app-ip" style="height:33px;width:fit-content;" type="text" value="{{user.first_name}}" disabled>
+        <label class="fw-bold me-4" for="lname">Last Name:</label>
+        <input class="form-control me-2 mb-3 app-ip" style="height:33px;width:fit-content;" type="text" value="{{user.last_name}}" disabled>
+        <label class="fw-bold me-4" for="email">Email:</label>
+        <input class="form-control me-2 mb-3 app-ip" style="height:33px;width:content;" type="text" value="{{user.email}}" disabled>
+        <label class="fw-bold me-4" for="dob">Sex: </label>
+        <input class="form-control me-2 mb-3 app-ip" style="height:33px;width:100px;" type="text" value="{{user.userprofile.gender}}" disabled>
+        <label class="fw-bold me-4" for="dob">Age: </label>
+        <input class="form-control me-2 mb-3 app-ip" style="height:33px;width:100px;" type="text" value="{{user.userprofile.age}}" disabled><br><br>
+        {% else %}
+        <p class="card-text fs-4 fw-bolder py-3 text-warning">Complete Your Profile. </p>
+        {% endif %}
+        </div>
+        <div class="container d-flex justify-content-center flex-flow-column">
+          <a href="/myaccount/edit_profile_details"><button class="btn btn-outline-light bg-danger text-white fw-bold mt-2 me-3" style="height:40;width:150px;font-size:13px;" type="submit">Edit Profile</button></a>
+          <a href="/myaccount/logout"><button class="btn btn-outline-light bg-danger text-white fw-bold mt-2" style="height:30px;width:150px;font-size:13px;" type="submit">Logout</button></a>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container-fluid mt-5 px-3">
+        <div class="row d-flex flex-wrap-column">
+          <div class="col-3 mr-3">
+            <div class="card-body d-flex justify-content-start flex-column">
+              <p class="card-text fs-5 mt-2 fw-bolder">ONLINE ORDERING</p>
+              {% if address %}
+              <p class="card-text fs-6 fw-bold">My Address</p>
+              <hr>
+              {% for address in address %}
+        <div class="mb-2 d-flex flex-column" style="justify-content:center;">   
+        <b>{{ address.name}}</b>
+        {{ address.pincode}},   
+        {{ address.address}},
+        {{ address.city}},
+        {{ address.dist}},
+        {{ address.state}}
+        <div class="mb-2 d-flex flex-row justify-content-center flex-column">
+         <b>Mobile: </b> {{ address.mobile}}
+         <b>Secondary Mobile: </b>  {{ address.s_mobile}} <br>
+         <p><b>({{ address.place}})</b></p>
+         <a href="{% url 'updateaddress' address.id %}"><button class="btn btn-outline-light bg-danger text-white fw-bold" style="height:35px;width:80px;" type="submit">Change</button></a>
+        </div>
+        </div>
+        {% endfor %}
+       </div>
+              {% else %}
+              <a href="{% url 'addaddress' %}"><button class="btn btn-outline-light bg-danger text-white fw-bold" style="height:35px;width:180px;font-size:13px;" type="submit">Add Delivery Address</button></a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+</section>
+{% endblock %}
