@@ -2,7 +2,7 @@ from django.shortcuts import render
 import razorpay
 from mysite.settings import RAZOR_KEY_ID, RAZOR_KEY_SECRET
 from shop.views import *
-from cart.cart import Cart
+from ecart.cart import Cart
 from django.contrib.auth.decorators import login_required
 from .models import Order
 from django.http import HttpResponse

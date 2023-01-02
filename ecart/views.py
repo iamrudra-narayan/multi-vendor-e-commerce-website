@@ -5,7 +5,7 @@ from user.models import Adminshoppost
 from products.models import FoodProduct
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from cart.cart import Cart
+from .cart import Cart
 
 # Create your views here.
 @login_required(login_url='login')
