@@ -54,8 +54,6 @@ def success(request):
     order = Order(user = request.user,cart_items=cart_items ,quantity=carts[i]['quantity'],prod_price=carts[i]['price'], address = d_address,total_price = total_price, order_id = order_id, razorpay_order_id=razorpay_order_id, razorpay_payment_id=razorpay_payment_id, razorpay_signature=razorpay_signature)
     order.save()
 
-    request.session['cart'] = {}
-
     orders = Order.objects.filter(order_id=order_id).first()
     
     return render(request, 'success.html', {'order_details': orders})

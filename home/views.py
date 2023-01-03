@@ -12,7 +12,7 @@ def home(request):
     if request.method == 'POST':
         phno = request.POST.get('phno')
         account_sid = 'AC1377db0737256c348fc40a77e5f15a2c' 
-        auth_token = '329661f26c0c8780d621af592a0c6860' 
+        auth_token = '713072aa418475034bcccc3b247d901c' 
         client = Client(account_sid, auth_token) 
  
         client.messages.create(

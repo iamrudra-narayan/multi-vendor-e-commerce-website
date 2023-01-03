@@ -10,7 +10,11 @@
     {% for order in orders %}
     <div class="card mb-5" style="width: 50vh;">
       <div class="card-body d-flex justify-content-start flex-column">
-        <a href="{% url 'orderdetails' order.order_id %}"><p class="card-text fs-6 fw-bold">{{order.order_id}}</p>
+        <a class="text-decoration-none" href="{% url 'orderdetails' order.order_id %}">
+          <b class="text-danger fw-bold">Order Id:</b> <p class="card-text fs-6 fw-bold">{{order.order_id}}</p>
+          <p class="card-text fw-normal text-dark">{{order.cart_items}}</p>
+          <p class="card-text fw-normal text-success">{{order.datetime_of_payment}}</p>
+        <a>  
       </div>
     </div>
     {% endfor %}

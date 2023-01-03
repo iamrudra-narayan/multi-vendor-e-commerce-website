@@ -184,8 +184,10 @@ def order_details(request, order_id):
     user = request.user
     address = Address.objects.filter(user = user)
     orders = Order.objects.filter(order_id=order_id).first()
-    print(orders.cart_items)
-    return render(request, "order-details.html",{'user':user, 'address':address, 'order_details':orders})        
+    ordered_items = orders.cart_items
+    items = str(ordered_items)[1:-1]
+    print(items)
+    return render(request, "order-details.html",{'user':user, 'address':address, 'order_details':orders, 'items':items})        
 
 '''{'1': {'userid': 2, 'product_id': 1, 'name': 'Chicken Dum Biriyani Half', 'quantity': 3, 'price': '99', 'image': '/media/pics/productimages/biriyani.jpg'},
  '2': {'userid': 2, 'product_id': 2, 'name': 'Egg Roll (Double Egg)', 'quantity': 5, 'price': '50', 'image': '/media/pics/productimages/eggroll.jpg'}}'''    
