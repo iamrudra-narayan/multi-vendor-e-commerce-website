@@ -49,4 +49,7 @@ def search(request):
         shop_results = Adminshoppost.objects.filter(shop_name__icontains=query)
         item_results = Category.objects.filter(food_category__icontains=query)
 
-    return render(request, 'search-results.html', {'query': query, 'results': results, 'shop_results': shop_results, 'item_results': item_results})   
+    return render(request, 'search-results.html', {'query': query, 'results': results, 'shop_results': shop_results, 'item_results': item_results})  
+
+def contactUs(request): 
+    return render(request, 'contact.html')

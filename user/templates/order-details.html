@@ -17,6 +17,19 @@
           <h3 class="fw-bold fs-4 text-primary me-4">Item Total </h3><p class="card-text text-dark fs-5 fw-bold me-5 ">₹ {{order_details.total_price}}</p>
           </div>
     </div>
+    <div class="row px-3">
+      <div class="col">
+        {% if order_details.delivery_status is True %}
+          <ul id="progressbar" >
+              <li class="step0  text-success fw-bolder text-right" id="step3">DELIVERED</li>
+          </ul>
+        {% else %} 
+          <ul id="progressbar" >
+            <li class="step0  text-danger fw-bolder text-right" id="step3">ORDER PLACED</li>
+          </ul> 
+        {% endif %}
+      </div>
+    </div>
     <div class="mb-5 d-flex flex-row justify-content-center flex-column">
         <h3>Order Details </h3>
         <hr>
@@ -24,7 +37,11 @@
         <p id="orderno" class="card-text mb-2" style="font-size:14px; font-weight:500">{{order_details.order_id}}</p>
         </label>
         <label for="payment" class="card-text" style="font-size:14px; font-weight:300">Payment
-        <p id="payment" class="card-text mb-2" style="font-size:14px; font-weight:500">Paid</p>
+        {% if order_details.payment_status is True %}  
+          <p id="payment" class="card-text text-success mb-2" style="font-size:14px; font-weight:500">Paid</p>
+        {% else %} 
+          <p id="payment" class="card-text text-warning mb-2" style="font-size:14px; font-weight:500">Pending</p>
+        {% endif %} 
         </label>
         <label for="date" class="card-text" style="font-size:14px; font-weight:300">Date
         <p id="date" class="card-text mb-2" style="font-size:14px; font-weight:500">{{order_details.datetime_of_payment}}</p>

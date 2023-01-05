@@ -30,6 +30,7 @@ class Order(models.Model):
     quantity = models.IntegerField(blank=False, default=0)
     total_price = models.FloatField(blank=False, default=0)
     payment_status = models.BooleanField(default=True)
+    delivery_status = models.BooleanField(default=False)
     order_id = models.CharField(unique=True, max_length=200, null=True, default=None) 
     datetime_of_payment = models.DateTimeField(default=timezone.now)
     created_at = models.TimeField(auto_now=True, editable=False)
