@@ -5,6 +5,8 @@ from django.contrib import messages
 from products.models import Category,FoodProduct
 from user.models import Adminshoppost
 from django.db.models import Q
+from .models import ContactForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -51,5 +53,26 @@ def search(request):
 
     return render(request, 'search-results.html', {'query': query, 'results': results, 'shop_results': shop_results, 'item_results': item_results})  
 
+@login_required(login_url='login')
 def contactUs(request): 
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('sub')
+        message = request.POST.get('msg')
+
+        contact = ContactForm(name=name, email=email, subject=subject, message=message, user=request.user)
+        contact.save()
+        messages.success(request, f'Thanks for contacting us. We will be reply to you as soon as possible!')
+        return redirect('contact')
+
     return render(request, 'contact.html')
+
+@login_required(login_url='login')
+def notifications(request): 
+    return render(request, 'notifications.html')
+
+@login_required(login_url='login')
+def favourites(request): 
+    return render(request, 'favourites.html')    
+

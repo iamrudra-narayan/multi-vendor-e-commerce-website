@@ -1,12 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <script src="//code.tidio.co/lhrng2zdexkde2hpepmsch5jnqzmkycf.js" async></script> 
-</body>
-</html>
+{% extends "layout.html" %}
+{% block title %}Contact Us{% endblock %}
+{% block content %}
+<div id="contact" class="contact">
+    <form class="d-flex justify-content-center flex-column align-items-center mt-2 px-3" method="POST">{% csrf_token %}
+        {% if messages %}
+        <div class="d-flex justify-content-center flex-column mt-3">
+          {% for message in messages %}
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            {% endfor %}
+        </div>  
+        {% endif %}  
+      <h2 class="text-danger fw-bolder fs-4 mb-2 mt-4">Get in touch</h2>
+      <p class="text-dark fw-1 fs-6 mb-4">We're pretty glad to help you</p>
+      <div class="mb-3">
+        <label for="name" class="form-label text-danger">Name</label>
+        <input type="name" class="form-control" id="exampleInputEmail1" name="name" required>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label text-danger">Email</label>
+        <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" required>
+      </div>
+      <div class="mb-3">
+        <label for="subject" class="form-label text-danger">Subject</label>
+        <input type="subject" class="form-control" name="sub" id="subject" required>
+      </div>
+      <div class="mb-3">
+        <label for="msg" class="form-label text-danger">Message</label>
+        <textarea class="form-control" name="msg" id="msg" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-outline-danger fw-bold mb-4" style="height:35px;width:100px;">Submit</button>
+    </form>
+</div>    
+{% endblock %}

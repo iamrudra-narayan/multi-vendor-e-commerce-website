@@ -16,8 +16,8 @@
                       <p style="margin-top:-20px;" class="card-text fs-6 fw-bold ">{{value.name}}</p>
                       <p style="margin-top:-15px;" class="card-text text-dark fs-6 fw-normal">{{value.price}}</p></a>
                       <div class="d-flex flex-row justify-content-start">
-                        <a class="btn btn-danger fw-bolder fs-6" href="{% url 'item_decrement' value.product_id %}"><b>-</b></a>
-                        <p class="fw-bold fs-6 text-dark px-3"><b>{{value.quantity}}</b></p>
+                        <a id="dec-btn" class="btn btn-danger fw-bolder fs-6" href="{% url 'item_decrement' value.product_id %}"><b>-</b></a>
+                        <p id="quantity" class="fw-bold fs-6 text-dark px-3"><b>{{value.quantity}}</b></p>
                         <a class="btn btn-success fw-bolder fs-6" href="{% url 'item_increment' value.product_id %}"><b>+</b></a>
                         <a href="{% url 'item_clear' key %}" class="justify-content-start ms-4"><i class="fa fa-times text-danger"></i></a>
                       </div>
@@ -66,4 +66,11 @@
  
 
 </section> 
+
+<script>
+    if (document.getElementById("quantity").innerHTML === 1){
+      <a id="dec-btn" class="btn btn-danger fw-bolder fs-6" disabled><b>-</b></a>
+    }
+    
+</script
 {% endblock %}
