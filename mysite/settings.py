@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-wh-2&@dzlv#%28ju9&f9t3-60f&e8y-t$98ntfvpw9m1b8y(29'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -136,9 +136,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR,'static/')
+
 MEDIA_URL = '/media/'
-STATIC_ROOT = os.path.join(BASE_DIR,'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 RAZOR_KEY_ID = "rzp_test_xrSibJ3SczKadC"
 RAZOR_KEY_SECRET = "7n2smuoCL0027Spzj5OC7Qag"
