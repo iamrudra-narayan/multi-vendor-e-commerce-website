@@ -139,7 +139,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'static/')
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/pics/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 RAZOR_KEY_ID = "rzp_test_xrSibJ3SczKadC"
 RAZOR_KEY_SECRET = "7n2smuoCL0027Spzj5OC7Qag"

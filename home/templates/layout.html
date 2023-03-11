@@ -50,8 +50,8 @@
                     support_agent
                     </span> 24x7 Customer care</a></li>
                     {% else %}  
-                    <li><a class="dropdown-item fs-6 btn-outline-danger fw-bold text-white" href="myaccount/register">Signup</a></li>
-                    <li><a class="dropdown-item fs-6 btn-outline-danger fw-bold text-white" href="myaccount/login">Login</a></li>
+                    <li><a class="dropdown-item fs-6 btn-outline-danger fw-bold text-white" href="{% url 'register' %}">Signup</a></li>
+                    <li><a class="dropdown-item fs-6 btn-outline-danger fw-bold text-white" href="{% url 'login' %}">Login</a></li>
                     {% endif %} 
                   </ul>    
               </ul>

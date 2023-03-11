@@ -11,7 +11,7 @@
     <div class="d-flex flex-row justify-content-evenly flex-wrap mt-4 mb-5">
       {% for product in products %}
       <div class="card" style="width: 50vh;">
-        <img src="/media/{{product.prod_image}}" class="card-img-top" style="height:200px;" alt="hotel image"/>
+        <img src="{{product.prod_image.url}}" class="card-img-top" style="height:200px;" alt="hotel image"/>
         <div class="card-body d-flex justify-content-start flex-column">
           <p class="card-text fs-6 fw-bold">{{product.prod_name}}</p>
           {% if product.item_availability is True %}
