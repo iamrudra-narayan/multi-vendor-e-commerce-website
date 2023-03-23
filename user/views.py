@@ -177,6 +177,7 @@ def orders(request):
     user = request.user
     address = Address.objects.filter(user = request.user)
     orders = Order.objects.filter(user = user)
+    print(orders)
     return render(request, "orders.html",{'user':user, 'address':address, 'orders':orders}) 
 
 @login_required(login_url='login')

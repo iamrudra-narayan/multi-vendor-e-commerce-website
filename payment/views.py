@@ -39,7 +39,7 @@ def success(request):
     cart_items = []
     cart = Cart(request)
     d_address = Address.objects.get(user=request.user)
-    order_id = random.randint(100000,999999999999)
+    order_id = random.randint(100000,99999999999)
     total_price =  cart.total()
     razorpay_order_id = 12345
     razorpay_payment_id = 12345

@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-wh-2&@dzlv#%28ju9&f9t3-60f&e8y-t$98ntfvpw9m1b8y(29'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -141,8 +141,8 @@ STATIC_ROOT = os.path.join(BASE_DIR,'static/')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-RAZOR_KEY_ID = "rzp_test_xrSibJ3SczKadC"
-RAZOR_KEY_SECRET = "7n2smuoCL0027Spzj5OC7Qag"
+RAZOR_KEY_ID = "rzp_test_70chG55v5Ub8nB"
+RAZOR_KEY_SECRET = "l1tOf9XyKSgmeODpN287vZP0"
 
 CART_SESSION_ID = 'cart'
 
