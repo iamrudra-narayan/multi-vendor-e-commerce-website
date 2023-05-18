@@ -81,24 +81,20 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
+DATABASES = '''{
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         #'NAME': BASE_DIR / 'db.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
     }
-}
-'''
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'food_user',
-        'USER': 'root',
-        'PASSWORD': 'gugula12',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-    }
 }'''
+
+import dj_database_url
+
+DATABASES = {
+    'default': dj_database_url.parse('''postgres://rudrazomato_user:nkQjiwZcElwiwkKzCvQppKvgRD3lyPs2@dpg-chj49ou4dad01ajfef10-a.singapore-postgres.render.com/rudrazomato''')
+    
+}
 
 
 # Password validation
