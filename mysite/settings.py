@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 import dj_database_url
 
 DATABASES = {
-    'default': dj_database_url.parse('''postgres://rudra:w4maL1vGAIG1yXJsYLzAT6fMi2EsGJCH@dpg-cmajhc7109ks73ff9et0-a.oregon-postgres.render.com/rudrazomato_kh7g''')
+    'default': dj_database_url.parse('''postgresql://rudrazomato_postgresql_user:OMDQSMri8KLRxjiTaFjFpTWOIMxoSVNW@dpg-cug6lltsvqrc738c1dag-a.oregon-postgres.render.com/rudrazomato_postgresql''')
     
 }
 
